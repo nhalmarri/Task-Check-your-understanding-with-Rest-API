@@ -9,8 +9,15 @@ public class ContactController {
 
     ArrayList<Contact> newContact = new ArrayList<>();
 
-    @PostMapping ("/addContact")
-    String addContact (@RequestBody Contact contact){
+   String addContact (@RequestBody Contact contact){
+
+        String newContactEmail = contact.getEmail();
+        for( int i = 0; i < newContact.size(); i++){
+
+            if( newContact.get(i).getEmail().equals(newContactEmail)){
+                return "Contact already exists with this email!";
+            }
+        }
          newContact.add(contact);
          return "Contact added Successfully!";
     }
